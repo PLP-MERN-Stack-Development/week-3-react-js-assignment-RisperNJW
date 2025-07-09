@@ -1,31 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react'; 
+import { ThemeProvider } from './Context/ThemeContext';
 import TaskManager from './components/TaskManager';
 import Home from './Pages/Home';
 import Layout from './Pages/Layout';
-import ThemeSwitch from './Context/ThemeSwitch';
-import UserList  from './components/UserList';
-// import { ThemeProvider } from './context/ThemeContext';
+import UserList from './components/UserList';
+import ThemeSwitch from './components/ThemeSwitch';
 
-// function Home() {
-//   return (
-//     <div className="text-center py-10">
-//       <h1 className="text-3xl font-bold mb-4">Welcome to Task Manager</h1>
-//       <p>Manage your tasks and browse user data</p>
-//     </div>
-//   );
-// }
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-
   return (
-  
-      <Router >
-        <Layout >
-          <div className="max-w-7xl mx-auto p-8 text-center">
+    <ThemeProvider>
+      <Router>
+        <Layout>
+          <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
             <div className="fixed top-4 right-4 z-50">
-              <ThemeSwitch darkMode={darkMode} setDarkMode={setDarkMode} />
+              <ThemeSwitch />
             </div>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -35,8 +23,8 @@ const App = () => {
           </div>
         </Layout>
       </Router>
-    // </ThemeProvider>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
